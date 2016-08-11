@@ -47,7 +47,7 @@ function TodoController($scope,$timeout,$ionicModal,$ionicSideMenuDelegate,Proje
 	function createProject(projectTitle){
 		var project=ProjectService.newProject(projectTitle);
 		vm.projects.push(project);
-		vm.selectProject(project,vm.projects.lenth-1);
+		vm.selectProject(project,vm.projects.length-1);
 	}
 
 	function newProject(){
@@ -72,6 +72,7 @@ function TodoController($scope,$timeout,$ionicModal,$ionicSideMenuDelegate,Proje
   		var taskId=task.id;
 		ProjectService.taskDone(activeProjectId,taskId);
 		vm.projects = ProjectService.all();
+		console.log(ProjectService.getLastActiveIndex());
 		vm.activeProject = vm.projects[ProjectService.getLastActiveIndex()];
 
 	}
@@ -80,6 +81,7 @@ function TodoController($scope,$timeout,$ionicModal,$ionicSideMenuDelegate,Proje
   		var taskId=task.id;
 		ProjectService.taskDelete(activeProjectId,taskId);
 		vm.projects = ProjectService.all();
+		console.log(ProjectService.getLastActiveIndex());
 		vm.activeProject = vm.projects[ProjectService.getLastActiveIndex()];
 	}
   	$timeout(function(){
